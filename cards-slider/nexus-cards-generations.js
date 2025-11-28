@@ -19,6 +19,11 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
         styleTag.textContent = addStyleSlider;
         document.head.appendChild(styleTag);
 
+        //Remueve el contenido de nombre y precio de cards manuales (Algunos casos)
+        document.querySelectorAll(".txtPrice").forEach(nd => {
+            nd.remove();
+        });
+
         // Variables de idioma y moneda
         let dataLang, dataCurrency;
     
@@ -235,4 +240,4 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
     });
 }
 
-export const version = "1.0.1";
+export const version = "1.0.2";
