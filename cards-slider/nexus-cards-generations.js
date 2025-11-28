@@ -3,7 +3,6 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
 
         // Obtencion de color base y clases agregadas para desborde de textos
         var botonColor = document.querySelector(".btn-primary");
-        if (!botonColor)
         var mainColor = (botonColor) ? window.getComputedStyle(botonColor).backgroundColor : "#FF621D";
 
         var addStyleSlider = `
@@ -244,4 +243,4 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
 
 }
 
-export const version = "1.0.5";
+export const version = "1.0.6";
