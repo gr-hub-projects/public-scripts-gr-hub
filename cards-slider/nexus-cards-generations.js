@@ -2,8 +2,8 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
     document.addEventListener('DOMContentLoaded', () => {
 
         // Obtencion de color base y clases agregadas para desborde de textos
-        var textColor = document.querySelector(".txt1");
-        var mainColor = window.getComputedStyle(textColor).color;
+        var botonColor = document.querySelector(".btn-primary");
+        var mainColor = window.getComputedStyle(botonColor).backgroundColor;
 
         var addStyleSlider = `
         :is(#${idSlider})
@@ -238,6 +238,7 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
             console.error("Dheylo001: Ocurrió un error al cargar el JSON:", error);
         });
     });
+
 }
 
 export const version = "1.0.2";
