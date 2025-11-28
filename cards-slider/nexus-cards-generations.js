@@ -56,12 +56,17 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
             }
             
             // Filtrar los productos según dataCategoria y dataSitio
-            const productosFiltrados = productos.filter(product =>
-                // Filtro para todas las delegaciones
-                product['categoria'] === dataCategoria && product['sitio'] === dataSitio
-                // Filtro para filtrar igual las diferentes delegaciones
-                //product['categoria'] === dataCategoria && product['sitio'] === dataSitio && product['delegation_en'] === dataDelegation
-            );
+            var productosFiltrados;
+            if (!delegation || delegation == "")
+                productosFiltrados = productos.filter(product =>
+                    // Filtro para todas las delegaciones
+                    product['categoria'] === dataCategoria && product['sitio'] === dataSitio
+                );
+            else
+                productosFiltrados = productos.filter(product =>
+                    // Filtro para filtrar igual las diferentes delegaciones
+                    product['categoria'] === dataCategoria && product['sitio'] === dataSitio && product['delegation_en'] === dataDelegation
+                );
 
             // Ordenar de mayor a menor según 'priority' y tomar solo los primeros 15 elementos
             const productosOrdenados = productosFiltrados
@@ -165,7 +170,7 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
                 cardContent.appendChild(pLocation);
                 // cardContent.appendChild(pPriceDetails);
                 // cardContent.appendChild(pPrice);
-                // cardContent.appendChild(pDiscount);
+                cardContent.appendChild(pDiscount);
                 
                 cardLink.appendChild(img);
                 cardLink.appendChild(cardContent);
@@ -213,4 +218,4 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
     });
 }
 
-//export const version = "1.0.0";
+export const version = "1.0.0";
