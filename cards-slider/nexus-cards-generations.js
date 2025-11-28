@@ -8,6 +8,7 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
         var addStyleSlider = `
         :is(#${idSlider})
         >.slick-list>.slick-track>.slick-slide>div>.card h3 {
+            height: 2em !important;
             display: -webkit-box !important;
             -webkit-line-clamp: 2 !important;
             -webkit-box-orient: vertical !important;
@@ -241,4 +242,4 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
 
 }
 
-export const version = "1.0.3";
+export const version = "1.0.4";
