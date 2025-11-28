@@ -86,12 +86,12 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
             if (!delegation || delegation == "")
                 productosFiltrados = productos.filter(product =>
                     // Filtro para todas las delegaciones
-                    product['categoria'] === dataCategoria && product['sitio'] === dataSitio
+                    product['categoria'] && product['categoria'].endsWith(dataCategoria) && product['sitio'] === dataSitio
                 );
             else
                 productosFiltrados = productos.filter(product =>
                     // Filtro para filtrar igual las diferentes delegaciones
-                    product['categoria'] === dataCategoria && product['sitio'] === dataSitio && (product['delegation_en'] === dataDelegation || product['delegation_mx'] === dataDelegation || product['delegation_fr'] === dataDelegation)
+                    product['categoria'] && product['categoria'].endsWith(dataCategoria) && product['sitio'] === dataSitio && (product['delegation_en'] === dataDelegation || product['delegation_mx'] === dataDelegation || product['delegation_fr'] === dataDelegation)
                 );
 
             // Ordenar de mayor a menor según 'priority' y tomar solo los primeros 15 elementos
@@ -243,4 +243,4 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
 
 }
 
-export const version = "1.0.6";
+export const version = "1.0.7";
