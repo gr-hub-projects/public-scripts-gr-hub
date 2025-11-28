@@ -48,7 +48,8 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
             return response.json();
         })
         .then(productos => {
-            const cardsSlider = $(`#${idSlider}`)
+
+            const cardsSlider = document.getElementsById(idSlider)[0];
             if (!cardsSlider) {
                 console.error(`Dheylo001: Contenedor #${idSlider} no encontrado.`);
                 return;
@@ -174,7 +175,7 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
             
             // Inicializar slick slider después de agregar todos los elementos
             
-            $(`#${idSlider}`).slick({
+            $('#'+idSlider).slick({
                 slidesToShow: 4, 
                 slidesToScroll: 1, 
                 infinite: true,
