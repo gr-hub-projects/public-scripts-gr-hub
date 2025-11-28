@@ -49,7 +49,7 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
         })
         .then(productos => {
 
-            const cardsSlider = document.getElementsById(idSlider)[0];
+            const cardsSlider = document.getElementById(idSlider);
             if (!cardsSlider) {
                 console.error(`Dheylo001: Contenedor #${idSlider} no encontrado.`);
                 return;
