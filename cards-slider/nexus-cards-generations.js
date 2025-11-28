@@ -3,16 +3,18 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
 
         // Obtencion de color base y clases agregadas para desborde de textos
         var botonColor = document.querySelector(".btn-primary");
-        var mainColor = window.getComputedStyle(botonColor).backgroundColor;
+        if (!botonColor)
+        var mainColor = (botonColor) ? window.getComputedStyle(botonColor).backgroundColor : "#FF621D";
 
         var addStyleSlider = `
         :is(#${idSlider})
-        >.slick-list>.slick-track>.slick-slide>div>.card h3 {
+        >.slick-list>.slick-track>.slick-slide>div>.card h3, .cardContent h3 {
             height: 2em !important;
             display: -webkit-box !important;
             -webkit-line-clamp: 2 !important;
             -webkit-box-orient: vertical !important;
             overflow: hidden !important;
+            line-height: 100% !important;
         }
         `;
 
@@ -21,7 +23,7 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
         document.head.appendChild(styleTag);
 
         //Remueve el contenido de nombre y precio de cards manuales (Algunos casos)
-        document.querySelectorAll(".txtPrice").forEach(nd => {
+        document.querySelectorAll(".txtPrice, .cardContent .priceDetails, .cardContent .price").forEach(nd => {
             nd.remove();
         });
 
@@ -242,4 +244,4 @@ export function generarTarjetasProductos(category, site, delegation, idSlider) {
 
 }
 
-export const version = "1.0.4";
+export const version = "1.0.5";
