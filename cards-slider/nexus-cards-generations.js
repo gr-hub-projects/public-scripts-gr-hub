@@ -1,14 +1,16 @@
-export function generarTarjetasProductos(category, site, delegation, idSlider) {
+export function generarTarjetasProductos(category, site, delegation, idSlider, colorSVG) {
     document.addEventListener('DOMContentLoaded', () => {
 
         // Obtencion de color base y clases agregadas para desborde de textos
         var botonColor = document.querySelector(".btn-primary");
-        var mainColor = (botonColor) ? window.getComputedStyle(botonColor).backgroundColor : "#FF621D";
+        var mainColor = (colorSVG||"") || (btn ? getComputedStyle(botonColor).backgroundColor : "#FF621D");
 
         var addStyleSlider = `
         :is(#${idSlider})
         >.slick-list>.slick-track>.slick-slide>div>.card h3, .cardContent h3 {
-            height: 2em !important;
+            height: 2em !important; 
+            min-height: 2em !important;
+            max-height: 2em !important;
             display: -webkit-box !important;
             -webkit-line-clamp: 2 !important;
             -webkit-box-orient: vertical !important;
@@ -253,9 +255,10 @@ export function ajusteContenidoCard(colorSVG) {
         // Estilos h3 (2 líneas)
         document.head.insertAdjacentHTML("beforeend",
             `<style>.slick-list .slick-slide h3,.cardContent h3{
-            height:2em!important;display:-webkit-box!important;
-            -webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;
-            overflow:hidden!important;line-height:100%!important;
+            height:2em!important; min-height:2em!important;
+            max-height:2em!important; display:-webkit-box!important;
+            -webkit-line-clamp:2!important; -webkit-box-orient:vertical!important;
+            overflow:hidden!important; line-height:100%!important;
             }</style>`
         );
 
@@ -279,4 +282,4 @@ export function ajusteContenidoCard(colorSVG) {
 
 }
 
-export const version = "1.0.8";
+export const version = "1.0.9";
