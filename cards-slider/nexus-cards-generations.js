@@ -3,7 +3,7 @@ export function generarTarjetasProductos(category, site, delegation, idSlider, c
 
         // Obtencion de color base y clases agregadas para desborde de textos
         var botonColor = document.querySelector(".btn-primary");
-        var mainColor = (colorSVG||"") || (btn ? getComputedStyle(botonColor).backgroundColor : "#FF621D");
+        var mainColor = (colorSVG||"") || (botonColor ? getComputedStyle(botonColor).backgroundColor : "#FF621D");
 
         var addStyleSlider = `
         :is(#${idSlider})
