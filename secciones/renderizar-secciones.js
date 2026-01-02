@@ -379,7 +379,7 @@ export function renderizarSeccionTraslados(idSeccion, datos){
         {
             titulo: {
                 en: "Shared Transfer",
-                es: "Translado Compartido",
+                es: "Traslado Compartido",
                 fr: "Transfert Partagé"
             },
             reserva:{
@@ -409,7 +409,7 @@ export function renderizarSeccionTraslados(idSeccion, datos){
         {
             titulo: {
                 en: "Private Transfer",
-                es: "Translado Privado",
+                es: "Traslado Privado",
                 fr: "Transfert Privé"
             },
             reserva:{
@@ -439,7 +439,7 @@ export function renderizarSeccionTraslados(idSeccion, datos){
         {
             titulo: {
                 en: "Luxury Transfer",
-                es: "Translado de Lujo",
+                es: "Traslado de Lujo",
                 fr: "Transfert de Luxe"
             },
             reserva:{
