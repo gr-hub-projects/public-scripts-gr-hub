@@ -48,7 +48,7 @@ export function renderizarSeccionTraslados(idSeccion, datos){
             /* --- LAYOUT GENERAL SECCIÓN TRASLADOS --- */
             .contenedor-traslados {
                 margin: auto;
-                width: 85%;
+                width: 100%;
             }
 
             .padding-contenedor-traslados {
