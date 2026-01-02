@@ -204,27 +204,24 @@ export function renderizarSeccionTraslados(idSeccion, datos){
             }
 
             .card-features li {
-                margin-bottom: 12px;
-                padding-left: 35px;
-                position: relative;
-                font-size: clamp(13px, 1.1vw, 16px);
-                min-height: 21px;
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
+                gap: 12px;
+                margin-bottom: 12px;
+                font-size: clamp(13px, 1.1vw, 16px);
+                line-height: 1.4;
             }
 
             /* Checkmark SVG */
             .card-features li::before {
                 content: '';
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%);
+                flex-shrink: 0;
                 width: 21px;
                 height: 21px;
                 background-image: url("data:image/svg+xml,%3Csvg width='21' height='21' viewBox='0 0 21 21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='21' height='21' rx='10.5' fill='%23${datos.colores.checks.replace("#", "") || coloresDefault.checks}'/%3E%3Cpath d='M6.5 11.1457L9.16667 14L14.5 7' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
                 background-repeat: no-repeat;
                 background-position: center;
+                margin-top: 2px;
             }
 
             /* --- BOTÓN DE RESERVA --- */
