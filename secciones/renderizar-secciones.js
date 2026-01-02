@@ -1,5 +1,11 @@
-// Template de traslados 2026/01/01
+// Obtener idioma actual en gral en toda pagina de Nexustours
+function obtenerIdioma(){
+    var idiomaCaja = document.querySelector(".js-langandcurrency-box-modal .text-capitalize");
+    var idiomaActual = idiomaCaja ? idiomaCaja.textContent : 'english';
+    return idiomaActual == 'español' ? 'es' : idiomaActual == 'français' ? 'fr' : 'en';
+}
 
+// Template de traslados 2026/01/01
 // === Ejemplo de datos: == //
 // const datos = {
 //      colores:{
@@ -20,14 +26,7 @@
 //     urlPrivado: "https://www.facebook.com",
 //     urlLujo: "https://www.youtube.com"
 // };
-
 export function renderizarSeccionTraslados(idSeccion, datos){
-
-    function obtenerIdioma(){
-        var idiomaCaja = document.querySelector(".js-langandcurrency-box-modal .text-capitalize");
-        var idiomaActual = idiomaCaja ? idiomaCaja.textContent : 'english';
-		return idiomaActual == 'español' ? 'es' : idiomaActual == 'français' ? 'fr' : 'en';
-    }
 
     const seccion = document.getElementById(idSeccion);
     if (!seccion) return;
