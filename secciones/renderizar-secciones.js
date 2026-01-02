@@ -2,15 +2,19 @@
 
 // === Ejemplo de datos: == //
 // const datos = {
-//     colores:{
-//         titulo: "#017f7c",
-//         subtitulo: "#2c3e50",
-//         checks: "1C3346",
-//         checksTexto: "rgba(38, 37, 37, 1)",
-//         reservaBase: "#ABD4D5",
-//         reservaBaseTexto: "#315F60",
-//         reservaSeleccionado: "#154B4C",
-//         reservaSeleccionadoTexto: "#CEB785"
+//      colores:{
+//          titulo: "#017f7c",
+//          subtitulo: "#2c3e50",
+//          masSeleccionado: "#1C3346",
+//          masSeleccionadoTexto: "#ffffff",
+//          checks: "1C3346",
+//          checksTexto: "rgba(38, 37, 37, 1)",
+//          botonReservaFondo: "#ABD4D5",
+//          botonReservaBorde: "#ABD4D5",
+//          botonReservaTexto: "#315F60",
+//          botonReservaSeleccionadoFondo: "#1C3346",
+//          botonReservaSeleccionadoBorde: "#1C3346",
+//          botonReservaSeleccionadoTexto: "#CEB785"
 //     },
 //     urlCompartido: "https://www.google.com",
 //     urlPrivado: "https://www.facebook.com",
@@ -18,6 +22,7 @@
 // };
 
 export function renderizarSeccionTraslados(idSeccion, datos){
+
     function obtenerIdioma(){
         var idiomaCaja = document.querySelector(".js-langandcurrency-box-modal .text-capitalize");
         var idiomaActual = idiomaCaja ? idiomaCaja.textContent : 'english';
@@ -33,12 +38,16 @@ export function renderizarSeccionTraslados(idSeccion, datos){
     const coloresDefault = {
         titulo: "#2c3e50",
         subtitulo: "#017f7c",
+        masSeleccionado: "#1C3346",
+        masSeleccionadoTexto: "#ffffff",
         checks: "1C3346",
         checksTexto: "rgba(38, 37, 37, 1)",
-        reservaBase: "#ABD4D5",
-        reservaBaseTexto: "#315F60",
-        reservaSeleccionado: "#1C3346",
-        reservaSeleccionadoTexto: "#CEB785"
+        botonReservaFondo: "#ABD4D5",
+        botonReservaBorde: "#ABD4D5",
+        botonReservaTexto: "#315F60",
+        botonReservaSeleccionadoFondo: "#1C3346",
+        botonReservaSeleccionadoBorde: "#1C3346",
+        botonReservaSeleccionadoTexto: "#CEB785"
     };
 
     if (!document.getElementById('estilos-seccion-traslados')){
@@ -214,7 +223,7 @@ export function renderizarSeccionTraslados(idSeccion, datos){
                 transform: translateY(-50%);
                 width: 21px;
                 height: 21px;
-                background-image: url("data:image/svg+xml,%3Csvg width='21' height='21' viewBox='0 0 21 21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='21' height='21' rx='10.5' fill='%23${datos.colores.checks || coloresDefault.checks}'/%3E%3Cpath d='M6.5 11.1457L9.16667 14L14.5 7' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+                background-image: url("data:image/svg+xml,%3Csvg width='21' height='21' viewBox='0 0 21 21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='21' height='21' rx='10.5' fill='%23${datos.colores.checks.replace("#", "") || coloresDefault.checks}'/%3E%3Cpath d='M6.5 11.1457L9.16667 14L14.5 7' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
                 background-repeat: no-repeat;
                 background-position: center;
             }
@@ -224,10 +233,10 @@ export function renderizarSeccionTraslados(idSeccion, datos){
                 display: block;
                 width: 100%;
                 padding: clamp(12px, 1.5vw, 18px);
-                border: none;
+                border: solid 1px ${datos.colores.botonReservaBorde || coloresDefault.botonReservaBorde};
                 border-radius: 8px;
-                background-color: ${datos.colores.reservaBase || coloresDefault.reservaBase};
-                color: ${datos.colores.reservaBaseTexto || coloresDefault.reservaBaseTexto};
+                background-color: ${datos.colores.botonReservaFondo || coloresDefault.botonReservaFondo};
+                color: ${datos.colores.botonReservaTexto || coloresDefault.botonReservaTexto};
                 font-size: clamp(0.9rem, 1.2vw, 1.1rem);
                 font-weight: 600;
                 text-align: center;
@@ -241,8 +250,8 @@ export function renderizarSeccionTraslados(idSeccion, datos){
 
             /* Estilo para el botón de la tarjeta seleccionada */
             .reserva-btn.selected-btn {
-                background-color: ${datos.colores.reservaSeleccionado || coloresDefault.reservaSeleccionado};
-                color: ${datos.colores.reservaSeleccionadoTexto || coloresDefault.reservaSeleccionadoTexto};
+                background-color: ${datos.colores.botonReservaSeleccionadoFondo || coloresDefault.botonReservaSeleccionadoFondo};
+                color: ${datos.colores.botonReservaSeleccionadoTexto || coloresDefault.botonReservaSeleccionadoTexto};
             }
 
             /* Efecto de brillo al pasar el mouse */
@@ -266,11 +275,11 @@ export function renderizarSeccionTraslados(idSeccion, datos){
             }
 
             a.reserva-btn:hover {
-                color:  ${datos.colores.reservaBaseTexto || coloresDefault.reservaBaseTexto};
+                color:  ${datos.colores.botonReservaTexto || coloresDefault.botonReservaTexto};
             }
 
             a.reserva-btn.selected-btn:hover {
-                color:  ${datos.colores.reservaSeleccionadoTexto || coloresDefault.reservaSeleccionadoTexto};
+                color:  ${datos.colores.botonReservaSeleccionadoTexto || coloresDefault.botonReservaSeleccionadoTexto};
             }
 
             a:focus,
@@ -286,8 +295,8 @@ export function renderizarSeccionTraslados(idSeccion, datos){
                 right: 25px;
                 transform: none;
                 z-index: 10;
-                background-color: #${datos.colores.checks || coloresDefault.checks};
-                color: white;
+                background-color: ${datos.colores.masSeleccionado || coloresDefault.masSeleccionado};
+                color: ${datos.colores.masSeleccionadoTexto || coloresDefault.masSeleccionadoTexto};
                 padding: 8px 0;
                 border-radius: 0px;
                 font-size: 0.9rem;
