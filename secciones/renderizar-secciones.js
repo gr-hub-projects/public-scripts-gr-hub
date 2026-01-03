@@ -379,7 +379,7 @@ export function renderizarSeccionTraslados(idSeccion, datos){
                 fr: "Transfert Partagé"
             },
             reserva:{
-                en: "Book now",
+                en: "Book now!",
                 es: "Reservar ahora",
                 fr: "Réserver maintenant"
             },
