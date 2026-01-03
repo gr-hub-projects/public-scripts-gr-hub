@@ -374,12 +374,12 @@ export function renderizarSeccionTraslados(idSeccion, datos){
         compartido:
         {
             titulo: {
-                en: "Shared Transfer!",
+                en: "Shared Transfer",
                 es: "Traslado Compartido",
                 fr: "Transfert Partagé"
             },
             reserva:{
-                en: "Book now",
+                en: "Book now!",
                 es: "Reservar ahora",
                 fr: "Réserver maintenant"
             },
