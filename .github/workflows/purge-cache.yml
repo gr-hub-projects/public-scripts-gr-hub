@@ -14,14 +14,17 @@ jobs:
     steps:
       - name: Purge jsDelivr Files
         run: |
-          # Lista de archivos a purgar
+          # Definimos el nombre del repo manualmente para evitar errores de mayúsculas de la variable de GitHub
+          REPO="gr-hub-projects/public-scripts-gr-hub"
+          
           FILES=(
             "cards-slider/nexus-cards-generations.js"
             "secciones/renderizar-secciones.js"
           )
           
           for FILE in "${FILES[@]}"; do
-            echo "Purgando: $FILE"
-            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/$FILE"
-            echo -e "\n"
+            echo "Intentando purgar: https://purge.jsdelivr.net/gh/$REPO@main/$FILE"
+            # Usamos -s (silent) y -S (show error) pero mostramos el Header con -i
+            curl -i -s -S "https://purge.jsdelivr.net/gh/$REPO@main/$FILE"
+            echo -e "\n--- Siguiente archivo ---\n"
           done
