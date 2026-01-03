@@ -16,6 +16,8 @@ jobs:
         run: |
           # Definimos el nombre del repo manualmente para evitar errores de mayúsculas de la variable de GitHub
           REPO="gr-hub-projects/public-scripts-gr-hub"
+          echo "Esperando 10 segundos para que GitHub actualice sus servidores..."
+          sleep 10
           
           FILES=(
             "cards-slider/nexus-cards-generations.js"
