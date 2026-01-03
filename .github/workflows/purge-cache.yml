@@ -1,0 +1,27 @@
+name: Purge jsDelivr Cache
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'cards-slider/nexus-cards-generations.js'
+      - 'secciones/renderizar-secciones.js'
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Purge jsDelivr Files
+        run: |
+          # Lista de archivos a purgar
+          FILES=(
+            "cards-slider/nexus-cards-generations.js"
+            "secciones/renderizar-secciones.js"
+          )
+          
+          for FILE in "${FILES[@]}"; do
+            echo "Purgando: $FILE"
+            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/$FILE"
+            echo -e "\n"
+          done
