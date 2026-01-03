@@ -374,7 +374,7 @@ export function renderizarSeccionTraslados(idSeccion, datos){
         compartido:
         {
             titulo: {
-                en: "Shared Transfer",
+                en: "Shared Transfer!",
                 es: "Traslado Compartido",
                 fr: "Transfert Partagé"
             },
