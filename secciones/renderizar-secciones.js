@@ -379,15 +379,15 @@ export function renderizarSeccionTraslados(idSeccion, datos){
                 fr: "Transfert Partagé"
             },
             reserva:{
-                en: "Book now!",
+                en: "Book now",
                 es: "Reservar ahora",
                 fr: "Réserver maintenant"
             },
             caracteristicas:{
                 en: [
-                    "An affordable option for solo travelers or small groups!", 
-                    "Comfortable ride in shared vehicles!", 
-                    "Scheduled departures at designated times!"
+                    "An affordable option for solo travelers or small groups", 
+                    "Comfortable ride in shared vehicles", 
+                    "Scheduled departures at designated times"
                 ],
                 es: [
                     "Opción accesible para grupos pequeños o viajeros individuales", 
