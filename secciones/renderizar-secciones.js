@@ -128,7 +128,7 @@ export function renderizarSeccionTraslados(idSeccion, datos) {
 }
 
 export function renderizarTarjetas(category, site, delegation, idSlider, colorSVG) {
-
+    document.addEventListener('DOMContentLoaded', () => {
         // Obtencion de color base y clases agregadas para desborde de textos
         var botonColor = document.querySelector(".btn-primary");
         var mainColor = (colorSVG||"") || (botonColor ? getComputedStyle(botonColor).backgroundColor : "#FF621D");
@@ -369,7 +369,7 @@ export function renderizarTarjetas(category, site, delegation, idSlider, colorSV
         .catch(error => {
             console.error("Dheylo001: Ocurrió un error al cargar el JSON:", error);
         });
-
+    });
 }
 
 export function ajusteContenidoCard(colorSVG) {
