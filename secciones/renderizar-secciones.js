@@ -46,13 +46,13 @@ export function renderizarSeccionTraslados(idSeccion, datos) {
             .card-features { list-style: none; padding: 0; margin: 0; color: ${c.checksTexto}; flex-grow: 1; }
             .card-features li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: clamp(13px, 1.1vw, 16px); line-height: 1.4; }
             .card-features li::before { content: ''; flex-shrink: 0; width: 21px; height: 21px; background-image: url("data:image/svg+xml,%3Csvg width='21' height='21' viewBox='0 0 21 21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='21' height='21' rx='10.5' fill='%23${c.checks.replace("#", "")}'/%3E%3Cpath d='M6.5 11.1457L9.16667 14L14.5 7' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; margin-top: 2px; }
-            .reserva-btn { display: block; width: 100%; padding: clamp(12px, 1.5vw, 18px); border: solid 1px ${c.botonReservaBorde}; border-radius: 8px; background-color: ${c.botonReservaFondo}; color: ${c.botonReservaTexto}; font-size: clamp(0.9rem, 1.2vw, 1.1rem); font-weight: 600; text-align: center; text-decoration: none; cursor: pointer; margin-bottom: 25px; position: relative; overflow: hidden; transition: transform 0.3s ease; }
-            .reserva-btn.selected-btn { background-color: ${c.botonReservaSeleccionadoFondo}; color: ${c.botonReservaSeleccionadoTexto}; }
+            .reserva-btn { display: block; width: 100%; padding: clamp(12px, 1.5vw, 18px); border: solid 1px ${c.btnBorde}; border-radius: 8px; background-color: ${c.btnFondo}; color: ${c.btnTexto}; font-size: clamp(0.9rem, 1.2vw, 1.1rem); font-weight: 600; text-align: center; text-decoration: none; cursor: pointer; margin-bottom: 25px; position: relative; overflow: hidden; transition: transform 0.3s ease; }
+            .reserva-btn.selected-btn { background-color: ${c.btnSelFondo}; color: ${c.btnSelTexto}; }
             .reserva-btn::after { content: ''; position: absolute; top: 0; left: -100%; width: 75%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.5s ease-in-out; }
             .reserva-btn:hover { transform: translateY(-2px); }
             .reserva-btn:hover::after { left: 125%; }
-            a.reserva-btn:hover { color: ${c.botonReservaTexto}; }
-            a.reserva-btn.selected-btn:hover { color: ${c.botonReservaSeleccionadoTexto}; }
+            a.reserva-btn:hover { color: ${c.btnTexto}; }
+            a.reserva-btn.selected-btn:hover { color: ${c.btnSelTexto}; }
             .selected-banner { position: absolute; top: -34px; left: 25px; right: 25px; z-index: 10; background-color: ${c.masSeleccionado}; color: ${c.masSeleccionadoTexto}; padding: 8px 0; font-size: 0.9rem; font-weight: 600; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
             @media (max-width: 1024px) { .cards-container { flex-wrap: wrap; justify-content: center; gap: 24px; } .traslado-card-wrapper { width: calc(50% - 20px); min-width: 300px; } }
             @media (max-width: 768px) { .cards-container { flex-direction: column; align-items: center; } .traslado-card-wrapper { width: 100%; max-width: 420px; } .traslado-card { height: auto; min-height: 340px; } }
