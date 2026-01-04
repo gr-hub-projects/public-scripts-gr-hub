@@ -49,7 +49,7 @@ export function renderizarSeccionTraslados(idSeccion, datos) {
             .reserva-btn { display: block; width: 100%; padding: clamp(12px, 1.5vw, 18px); border: solid 1px ${c.btnBorde}; border-radius: 8px; background-color: ${c.btnFondo}; color: ${c.btnTexto}; font-size: clamp(0.9rem, 1.2vw, 1.1rem); font-weight: 600; text-align: center; text-decoration: none; cursor: pointer; margin-bottom: 25px; position: relative; overflow: hidden; transition: transform 0.3s ease; }
             .reserva-btn.selected-btn { background-color: ${c.btnSelFondo}; color: ${c.btnSelTexto}; }
             .reserva-btn::after { content: ''; position: absolute; top: 0; left: -100%; width: 75%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.5s ease-in-out; }
-            .reserva-btn:hover { transform: translateY(-2px); }
+            .reserva-btn:hover { transform: translateY(-2px); text-decoration: none;}
             .reserva-btn:hover::after { left: 125%; }
             a.reserva-btn:hover { color: ${c.btnTexto}; }
             a.reserva-btn.selected-btn:hover { color: ${c.btnSelTexto}; }
