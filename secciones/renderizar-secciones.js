@@ -127,7 +127,7 @@ export function renderizarSeccionTraslados(idSeccion, datos) {
         </div>`;
 }
 
-export function renderizarTarjetas(category, site, delegation, idSlider, colorSVG) {
+export function renderizarTarjetasActividades(category, site, delegation, idSlider, colorSVG) {
     // Obtencion de color base y clases agregadas para desborde de textos
     var botonColor = document.querySelector(".btn-primary");
     var mainColor = (colorSVG||"") || (botonColor ? getComputedStyle(botonColor).backgroundColor : "#FF621D");
@@ -370,7 +370,7 @@ export function renderizarTarjetas(category, site, delegation, idSlider, colorSV
     });
 }
 
-export function ajusteContenidoCard(colorSVG) {
+export function ajusteContenidoTarjetaActividades(colorSVG) {
     // Estilos h3 (2 líneas)
     document.head.insertAdjacentHTML("beforeend",
         `<style>.slick-list .slick-slide h3,.cardContent h3{
