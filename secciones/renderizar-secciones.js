@@ -127,7 +127,7 @@ export function renderizarSeccionTraslados(idSeccion, datos) {
         </div>`;
 }
 
-export function renderizarTarjetas(category, site, delegation, idSlider, colorSVG) {
+export function renderizarTarjetas_OLD(category, site, delegation, idSlider, colorSVG) {
     // Obtencion de color base y clases agregadas para desborde de textos
     var botonColor = document.querySelector(".btn-primary");
     var mainColor = (colorSVG||"") || (botonColor ? getComputedStyle(botonColor).backgroundColor : "#FF621D");
@@ -368,6 +368,83 @@ export function renderizarTarjetas(category, site, delegation, idSlider, colorSV
     .catch(error => {
         console.error("Dheylo001: Ocurrió un error al cargar el JSON:", error);
     });
+}
+
+export function renderizarTarjetas(category, site, delegation, idSlider, colorSVG) {
+    // 1. Configuración de colores y estilos
+    const botonColor = document.querySelector(".btn-primary");
+    const mainColor = colorSVG || (botonColor ? getComputedStyle(botonColor).backgroundColor : "#FF621D");
+
+    const styleTag = document.createElement("style");
+    styleTag.textContent = `:is(#${idSlider}) >.slick-list>.slick-track>.slick-slide>div>.card h3, .cardContent h3 { height: 2em !important; min-height: 2em !important; max-height: 2em !important; display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical !important; overflow: hidden !important; line-height: 100% !important; }`;
+    document.head.appendChild(styleTag);
+
+    // 2. Limpieza de elementos manuales previos
+    document.querySelectorAll(".txtPrice, .cardContent .priceDetails, .cardContent .price").forEach(nd => nd.remove());
+
+    // 3. Obtención de Meta-datos (Idioma, Moneda, Opacidad)
+    const modal = document.querySelector('#langandcurrency-box-modal .modal-content.lang-currency');
+    if (!modal) return console.error("Dheylo001: Componentes de idioma no encontrados.");
+
+    const dataLang = modal.getAttribute('data-lang');
+    const dataCurrency = modal.getAttribute('data-currency');
+    const isOpaque = !!document.getElementById('user-bar');
+
+    // 4. Carga y Procesamiento de Datos
+    fetch('https://raw.githubusercontent.com/davidgrhub/JsonRepositoryNexus/refs/heads/main/productos.json')
+        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then(productos => {
+            const cardsSlider = document.getElementById(idSlider);
+            if (!cardsSlider) return;
+
+            // Filtrado optimizado
+            const filtrados = productos.filter(p => {
+                const matchCat = p.categoria?.endsWith(category) && p.sitio === site;
+                const matchDel = !delegation || [p.delegation_en, p.delegation_mx, p.delegation_fr].includes(delegation);
+                return matchCat && matchDel;
+            }).sort((a, b) => b.priority - a.priority).slice(0, 15);
+
+            // Generación de HTML
+            cardsSlider.innerHTML = filtrados.map(p => {
+                const name = p[`product_name_${dataLang}`] || p.product_name_en;
+                const delText = p[{es: 'delegation_mx', fr: 'delegation_fr'}[dataLang] || 'delegation_en'];
+                
+                const discText = isOpaque 
+                    ? { es: ` Disfruta hasta ${p.desc_final_opaco}% de descuento adicional.`, fr: ` Profitez jusqu'à ${p.desc_final_opaco}% de réduction en plus.`, en: ` Enjoy up to ${p.desc_final_opaco}% off.` }[dataLang] || ` Enjoy up to ${p.desc_final_opaco}% off.`
+                    : { es: " Regístrate y obtén un 5% de descuento adicional", fr: " Inscrivez-vous et obtenez 5 % de réduction en plus", en: " Sign up and get an extra 5% off your purchase" }[dataLang] || " Sign up and get an extra 5% off your purchase";
+
+                return `
+                    <a class="card" href="${p.nexus_link || '#'}">
+                        <img src="${p.product_img1_link || ''}" alt="${p.product_name_en || ''}">
+                        <div class="card-content">
+                            <h3>${name}</h3>
+                            <p class="location">
+                                <svg width="7" height="11" viewBox="0 0 7 11" fill="none"><path d="M3.50354 0.498055C1.56421 0.498055 0 2.1363 0 4.16744C0 6.10221 3.12133 10.2015 3.25581 10.3794C3.36906 10.5203 3.56724 10.5425 3.70172 10.4313C3.72295 10.4165 3.73711 10.4017 3.75126 10.3794C3.88574 10.2015 7.00708 6.10962 7.00708 4.16744C7.00708 2.22526 5.43579 0.498055 3.50354 0.498055ZM3.50354 5.16077C2.80283 5.16077 2.22952 4.56774 2.22952 3.82645C2.22952 3.08516 2.79575 2.49212 3.50354 2.49212C4.21132 2.49212 4.77755 3.08516 4.77755 3.82645C4.77755 4.56774 4.21132 5.16077 3.50354 5.16077Z" fill="#565657"/></svg>
+                                ${delText}
+                            </p>
+                            <p class="discount">
+                                <svg fill="none" viewBox="0 0 16 16"><g fill="${mainColor}"><path d="M15.8626.1373a.4687.4687 0 0 0-.6629 0l-1.3653 1.3653a1.4 1.4 0 0 0-.265-.0953L9.3266.359a1.414 1.414 0 0 0-1.3356.37L.4112 8.2964c-.5483.5483-.5483 1.4405 0 1.9888l5.3035 5.3035c.5483.5483 1.4405.5484 1.9889 0l7.5674-7.5799c.3473-.3473.489-.859.3699-1.3355l-1.0482-4.2428a1.4 1.4 0 0 0-.0953-.265L15.8627.8002a.469.469 0 0 0-.0001-.6629m-1.1313 6.7635a.471.471 0 0 1-.1233.4451l-7.5674 7.5799a.4693.4693 0 0 1-.663 0L1.0741 9.6223a.4693.4693 0 0 1 0-.663l7.58-7.5674a.471.471 0 0 1 .445-.1233l3.9854.9839-1.1289 1.1289c-.5227-.249-1.1683-.1577-1.6003.2744-.5484.5483-.5484 1.4405 0 1.9888.2741.2742.6343.4113.9944.4113s.7202-.137.9944-.4113c.4321-.432.5234-1.0777.2744-1.6003l1.1289-1.129zm-3.0501-1.919a.4694.4694 0 0 1-.663 0 .4694.4694 0 0 1 0-.663.467.467 0 0 1 .3315-.137.467.467 0 0 1 .3314.137h.0001a.4694.4694 0 0 1 0 .663"/></g></svg>
+                                ${discText}
+                            </p>
+                        </div>
+                    </a>`.trim();
+            }).join('');
+
+            // 5. Inicializar Slick
+            $(`#${idSlider}`).slick({
+                slidesToShow: 4, slidesToScroll: 1, infinite: true, arrows: true,
+                prevArrow: '<button class="slick-prev"><svg width="40" height="40" viewBox="0 0 40 40"><rect x="39.5" y="39.5" width="39" height="39" rx="19.5" transform="rotate(-180 39.5 39.5)" stroke="black"/><path d="M14.0001 20.3043C14.0001 20.0067 14.1229 19.709 14.3682 19.4821L22.0896 12.3407C22.5808 11.8864 23.3771 11.8864 23.8681 12.3407C24.3591 12.7948 24.3591 13.5312 23.8681 13.9855L17.0358 20.3043L23.8679 26.6231C24.3588 27.0774 24.3588 27.8138 23.8679 28.2678C23.3769 28.7223 22.5805 28.7223 22.0893 28.2678L14.3679 21.1265C14.1227 20.8995 14.0001 20.6019 14.0001 20.3043Z" fill="#494949"/></svg></button>',
+                nextArrow: '<button class="slick-next"><svg width="40" height="40" viewBox="0 0 40 40"><rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#494949"/><path d="M27.2363 20.3043C27.2363 20.602 27.1134 20.8996 26.8681 21.1265L19.1467 28.2679C18.6556 28.7222 17.8592 28.7222 17.3682 28.2679C16.8773 27.8138 16.8773 27.0774 17.3682 26.6231L24.2006 20.3043L17.3685 13.9855C16.8775 13.5312 16.8775 12.7949 17.3685 12.3408C17.8594 11.8863 18.6558 11.8863 19.147 12.3408L26.8684 19.4821C27.1137 19.7091 27.2363 20.0068 27.2363 20.3043Z" fill="#494949"/></svg></button>',
+                responsive: [
+                    { breakpoint: 1024, settings: { slidesToShow: 3 } },
+                    { breakpoint: 800, settings: { slidesToShow: 2.5 } },
+                    { breakpoint: 700, settings: { slidesToShow: 2 } },
+                    { breakpoint: 580, settings: { slidesToShow: 1.5 } },
+                    { breakpoint: 460, settings: { slidesToShow: 1 } }
+                ]
+            });
+        })
+        .catch(err => console.error("Dheylo001: Error", err));
 }
 
 export function ajusteContenidoCard(colorSVG) {
