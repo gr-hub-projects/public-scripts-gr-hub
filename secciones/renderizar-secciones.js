@@ -68,11 +68,23 @@ export function renderizarSeccionTraslados(idSeccion, datos) {
         banner: { en: "Most selected", es: "Más seleccionado", fr: "Le plus sélectionné" }[lang]
     };
 
-    const cards = [
+    const cardsBase = [
         { id: 'compartido', url: datos.urlCompartido, sel: false },
         { id: 'privado', url: datos.urlPrivado, sel: true },
         { id: 'lujo', url: datos.urlLujo, sel: false }
     ];
+
+    const cards = cardsBase.filter(c => typeof c.url === "string" && c.url.trim() !== "");
+
+    if (cards.length === 0) {
+    seccion.innerHTML = "";
+    seccion.style.display = "none";
+    return;
+    } else {
+    seccion.style.display = "";
+    }
+
+    if (!cards.some(c => c.sel)) cards[0].sel = true;
 
     const infoTarjetas = {
         compartido: {
@@ -116,7 +128,7 @@ export function renderizarSeccionTraslados(idSeccion, datos) {
                         </div>
                     </div>
                     <div class="card-details">
-                        <a href="${card.url || (window.location.origin + '/transfers')}" 
+                        <a href="${card.url}"
                            class="reserva-btn ${card.sel ? 'selected-btn' : ''}">${btnText}</a>
                         <ul class="card-features">
                             ${infoTarjetas[card.id].features[lang].map(f => `<li>${f}</li>`).join('')}
