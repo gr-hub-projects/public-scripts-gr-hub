@@ -115,10 +115,12 @@ export function renderizarSeccionTraslados(idSeccion, datos) {
 
     const btnText = { en: "Book now", es: "Reservar ahora", fr: "Réserver maintenant" }[lang];
 
+    const justify = cards.length <= 2 ? 'space-around' : 'space-between';
+
     seccion.innerHTML = `
         <h2 class="section-title-traslados">${t.title}</h2>
         <p class="section-subtitle-traslados">${t.sub}</p>
-        <div class="cards-container">
+        <div class="cards-container" style="justify-content:${justify}">
             ${cards.map(card => `
                 <div class="traslado-card-wrapper">
                     ${card.sel ? `<div class="selected-banner">${t.banner}</div>` : ''}
