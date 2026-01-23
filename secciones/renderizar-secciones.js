@@ -41,7 +41,7 @@ export function renderizarSeccionTraslados(idSeccion, datos) {
             #card-privado { background-image: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('https://www.nexustours.com/images/upload//Luxe%20landing/traslado-privado-2.jpg'); }
             #card-lujo { background-image: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('https://www.nexustours.com/images/upload//Luxe%20landing/traslado-de-lujo.jpg'); }
             .traslado-card .card-image-content { position: relative; z-index: 2; width: 100%; box-sizing: border-box; }
-            .card-title { font-size: 26px; margin: 5px 0 0 0; font-weight: 700; position: relative; z-index: 1; }
+            .card-title { font-size: 26px; margin: 5px 0 0 0; font-weight: 700; position: relative; z-index: 1; text-align: center;}
             .card-details { padding: clamp(20px, 3vw, 35px); text-align: left; flex-grow: 1; display: flex; flex-direction: column; }
             .card-features { list-style: none; padding: 0; margin: 0; color: ${c.checksTexto}; flex-grow: 1; }
             .card-features li { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: clamp(13px, 1.1vw, 16px); line-height: 1.4; }
