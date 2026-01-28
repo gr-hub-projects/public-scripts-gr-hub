@@ -115,7 +115,7 @@ export function renderizarSeccionTraslados(idSeccion, datos) {
 
     const btnText = { en: "Book now", es: "Reservar ahora", fr: "Réserver maintenant" }[lang];
 
-    const justify = cards.length <= 2 ? 'start' : 'space-between';
+    const justify = cards.length <= 2 ? 'center' : 'space-between';
 
     seccion.innerHTML = `
         <h2 class="section-title-traslados">${t.title}</h2>
