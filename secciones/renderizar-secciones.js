@@ -104,7 +104,7 @@ export function renderizarSeccionTraslados(idSeccion, datos) {
             }
         },
         lujo: {
-            titulo: { en: "Deluxe Transfer", es: "Traslado de Lujo", fr: "Transfert Deluxe" },
+            titulo: { en: "Deluxe Transfer", es: "Traslado Deluxe", fr: "Transfert Deluxe" },
             features: {
                 en: ["Premium vehicles offering extra space and top-level comfort", "Personalized service for couples or groups", "A refined, premium experience ideal for weddings and special occasions"],
                 es: ["Vehículos de lujo con mayor espacio y confort", "Atención exclusiva para tu pareja o grupo", "Ambiente premium ideal para bodas y ocasiones especiales"],
